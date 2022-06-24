@@ -29,14 +29,12 @@ nbqa:
 	nbqa black .
 	nbqa flake8 .
 
-install:
-	poetry install
-	poetry run ipython kernel install --user --name $(ENV_NAME)	
+# ENV_NAME = pydata2022
+# install:
+# 	poetry install
+# 	# poetry run ipython kernel install --user --name $(ENV_NAME)	
 
-install-no-dev:
-	poetry install --no-dev
 
 pip-export:
-	poetry export --output requirements.txt --without-hashes
 	poetry export --dev --output requirements-dev.txt --without-hashes
 

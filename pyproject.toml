@@ -54,6 +54,7 @@ jupyterlab = "^3.4.3"
 jupyter-panel-proxy = "^0.1.0"
 dtale = "^2.6.0"
 kaleido = "0.2.1"
+itables = "^1.1.1"
 
 [tool.poetry.dev-dependencies]
 black = { version = "*", extras = ["jupyter"] }
