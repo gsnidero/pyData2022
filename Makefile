@@ -4,7 +4,7 @@
 .ONESHELL:
 
 
-run:
+nbcovert:
 	jupyter nbconvert --no-input --to html options-exploration-analysis.ipynb 
 
 lint: isort black flake8 mypy
