@@ -1,0 +1,73 @@
+[tool.black]
+line-length = 120
+# extend-exclude = '''
+# /(
+#   # Add dirs on top of the defaults
+#   | other
+#   # NOTE still having issue in excluding single files here, it works via command line
+#   # | .*stub
+# )/
+# '''
+
+
+[tool.isort]
+profile = "black"
+line_length = 120
+extend_skip_glob = ["other", "*stub.py"]
+known_first_party = []
+known_local_folder = []
+
+
+[tool.mypy]
+exclude = ['other']
+check_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+show_column_numbers = true
+show_error_context = true
+strict_optional = true
+strict_equality = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.poetry]
+name = "man-group-pydata2022"
+version = "0.1.0"
+description = ""
+authors = ["Giacomo Snidero <giacomo.snidero@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastparquet = "^0.8.1"
+holoviews = "^1.14.9"
+hvplot = "^0.8.0"
+pandas = "^1.4.2"
+seaborn = "^0.11.2"
+pyarrow = "^8.0.0"
+panel = "^0.13.1"
+altair = "^4.2.0"
+param = "^1.12.2"
+plotly = "^5.8.2"
+SQLAlchemy = "^1.4.37"
+jupyterlab = "^3.4.3"
+jupyter-panel-proxy = "^0.1.0"
+dtale = "^2.6.0"
+kaleido = "0.2.1"
+
+[tool.poetry.dev-dependencies]
+black = { version = "*", extras = ["jupyter"] }
+flake8 = "*"
+flake8-bugbear = "*"
+flake8-builtins = "*"
+flake8-comprehensions = "*"
+flake8-variables-names = "*"
+ipykernel = "*"
+isort = "*"
+mypy = "*"
+nbqa = "*"
+pandas-vet = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
