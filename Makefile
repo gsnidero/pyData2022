@@ -4,13 +4,24 @@
 .ONESHELL:
 
 
-nbcovert:
-	jupyter nbconvert --no-input --to html options-exploration-analysis.ipynb 
+NB_NAME = options-exploration-analysis.ipynb
+
+
+publish: nbqa nbconvert pip-export
+
+nbconvert:
+	poetry run jupyter nbconvert --execute --to notebook --inplace  ${NB_NAME} 
+	poetry run jupyter nbconvert --no-input --to html ${NB_NAME} 
+
+nbqa:
+	nbqa isort .
+	nbqa black .
+	nbqa flake8 .
+
+pip-export:
+	poetry export --dev --output requirements-dev.txt --without-hashes
 
 lint: isort black flake8 mypy
-
-clean:
-	rm -rf __pycache__ .pytest_cache .mypy_cache
 
 isort:
 	isort .
@@ -24,17 +35,8 @@ flake8:
 mypy:
 	mypy . 
 
-nbqa:
-	nbqa isort .
-	nbqa black .
-	nbqa flake8 .
+clean:
+	rm -rf __pycache__ .pytest_cache .mypy_cache
 
-# ENV_NAME = pydata2022
-# install:
-# 	poetry install
-# 	# poetry run ipython kernel install --user --name $(ENV_NAME)	
-
-
-pip-export:
-	poetry export --dev --output requirements-dev.txt --without-hashes
-
+install:
+	poetry install
